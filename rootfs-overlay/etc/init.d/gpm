@@ -1,0 +1,15 @@
+#!/bin/sh
+case "$1" in
+        stop)
+          echo "Stopping gpm"
+          killall gpm 
+        ;;
+        start)
+          echo "Starting gpm"
+          gpm -m /dev/input/mice -t imps2
+	;;
+        *)
+          echo 'Usage: /etc/init.d/gpm {start|stop}'
+          exit 3
+        ;;
+esac

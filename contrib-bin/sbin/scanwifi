@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/sbin/wpa_cli -i wlan0 scan_results 
+

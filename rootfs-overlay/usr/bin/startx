@@ -1,0 +1,11 @@
+#!/bin/bash
+. /etc/CONFIG.sh
+mkdir /var/log
+/sbin/modprobe evdev
+# We can save a few seconds by not loading the vc4 module, if we don't need
+#  any kind of hardware acceleration (e.g., for playing video).
+/sbin/modprobe vc4 
+Xorg -config /etc/X11/X.conf -logfile /tmp/Xlog &
+su - $USER -c "DISPLAY=:0 xterm &"
+su - $USER -c "DISPLAY=:0 matchbox-window-manager"
+killall Xorg

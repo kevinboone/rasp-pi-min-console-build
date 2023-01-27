@@ -1,0 +1,28 @@
+#!/bin/bash
+
+USAGE1="Usage: setwifi {SSID} {key}"
+USAGE2="(Both SSID and key are case-sensitive)"
+
+if [ -z "$1" ] ; then
+  echo $USAGE1
+  echo $USAGE2
+  exit
+fi
+
+if [ -z "$2" ] ; then
+  echo $USAGE1
+  echo $USAGE2
+  exit
+fi
+
+SSID=$1
+PSK=$2
+
+/sbin/wpa_cli -i wlan0 remove_network 0 >& /dev/null
+/sbin/wpa_cli -i wlan0 add_network >& /dev/null
+/sbin/wpa_cli -i wlan0 set_network 0 ssid \"$SSID\"  >& /dev/null
+/sbin/wpa_cli -i wlan0 set_network 0 psk \"$PSK\"  >& /dev/null
+/sbin/wpa_cli -i wlan0 enable_network 0 >& /dev/null
+
+echo "Please allow a few seconds for the change to take effect." 
+
