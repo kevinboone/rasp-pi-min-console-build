@@ -17,6 +17,7 @@ RASPBIAN_RELEASE=bullseye
 BOOT=/tmp/boot
 ROOTFS=/tmp/rootfs
 HOMEFS=/tmp/home
+CACHEDIR=cache
 
 # Location for general temporary files. Any that are not deleted after
 #  the build and installation can be removed using cleanall.sh. Note, 

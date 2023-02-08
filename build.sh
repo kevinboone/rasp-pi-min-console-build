@@ -2,7 +2,7 @@
 
 . ./CONFIG.sh
 
-ESSENTIAL_PKGS="bash ncurses-base libtinfo6 sysvinit-core sudo coreutils strace libpam-runtime util-linux login console-data kbd hostname file kmod procps grep findutils psmisc sed console-tools console-data console-setup console-setup-linux gzip ncurses-bin"
+ESSENTIAL_PKGS="bash ncurses-base libtinfo6 sysvinit-core sudo coreutils strace libpam-runtime util-linux login console-data kbd hostname file kmod procps grep findutils psmisc sed console-tools console-data console-setup console-setup-linux gzip ncurses-bin firmware-brcm80211"
 
 # ========= Work out what to install ============
 
@@ -77,6 +77,7 @@ export ROOTFS
 export BOOT 
 export TMP
 export RASPBIAN_RELEASE
+export CACHEDIR 
 
 # ============ Download packages =================
 

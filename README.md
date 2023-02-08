@@ -1,7 +1,7 @@
 # rasp-pi-min-console-build
 
-Version 0.0.1
-Kevin Boone, Jan 2023
+Version 0.0.2
+Kevin Boone, February 2023
 
 ## What is this?
 
@@ -580,8 +580,48 @@ servers to retrieve the time, and they can be slow to respond.
 However, if the time is never correct, this may indicate a general
 failure of networking. 
 
+## Bundle contents 
 
+`bootfiles` -- contains files that will be copied to the boot partiion 
+during the build (e.g., `cmdline.txt`). Editing these files is the appropriate
+way to modify the firmware and kernel boot conditions.
 
+`build.sh` -- the main build script. Must be run as an unprivileged user.
 
+`cache` -- this directory is created by the build, and contains cached 
+copies of artefacts downloaded from the Raspbian repository.
 
+`cleanall.sh` -- removes everything created by the build script, except the
+`cache` directory.
+
+`CONFIG.sh` -- all the configuration parameters for the build and at runtime
+
+`contrib-bin` -- binaries that have been built elsewhere and included in
+this build process (e.g., the custom system log daemon). The distinction
+between this directory and `rootfs-overlay` is that the latter is part of
+this project, while `contrib-bin` contains foreign binaries that have their
+own projects.
+
+`copy-to-card.sh` -- Copies the root, home, and boot images created by
+`build.sh` to an SD card. Probably has to be run as root.
+
+`get_deb.pl` -- A script to download packages from the Raspbian repository.
+
+`misc-config` -- A few configuration files that didn't seem to fit 
+anywhere else.
+
+`prepare-card.sh` -- partitions an SD card read for `copy-to-card.sh`.
+
+`rootfs-overlay` -- a directory tree that will be copied onto the root
+filesystem image once all the downloading and unpacking of packages has
+been done.
+
+## Revisions
+
+0.0.2, February 2023:
+- Updated the `get_deb.pl` script to version 0.2, which includes caching support
+- Removed the non-GPL firmware that was stuck in the `rootfs-overlay` directory. Oops.
+
+0.0.1, December 2022:
+First release
 

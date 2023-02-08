@@ -2,6 +2,8 @@
 
 # Clean up after building rasp-pi-min-ro-build. There should be no need
 #  to run this script as root
+# Please note that the cache directory is not cleared -- there should really
+#  never be a need to clear it, unless it's eating too much disk space
 
 . ./CONFIG.sh
 
