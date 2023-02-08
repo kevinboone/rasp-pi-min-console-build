@@ -24,8 +24,6 @@
 
 use strict;
 
-# bluez-firmware firmware-atheros firmware-brcm80211 firmware-libertas firmware-misc-nonfree firmware-realtek 
-
 my $staging = $ENV{'ROOTFS'};
 my $tmp = $ENV{'TMP'};
 my $release = $ENV{'RASPBIAN_RELEASE'};

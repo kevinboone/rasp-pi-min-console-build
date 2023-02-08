@@ -4,6 +4,12 @@
 
 ESSENTIAL_PKGS="bash ncurses-base libtinfo6 sysvinit-core sudo coreutils strace libpam-runtime util-linux login console-data kbd hostname file kmod procps grep findutils psmisc sed console-tools console-data console-setup console-setup-linux gzip ncurses-bin firmware-brcm80211"
 
+# On some systems, other firmware packages might be needed -- I'm not sure.
+# Some Pi's probably need firmware-atheros or firmware-realtek 
+#   for the network adapter. Bluetooth support probably needs bluez-firmware. 
+# There's no harm in including them, if in doubt -- they are very small.
+
+
 # ========= Work out what to install ============
 
 PKGS="$ESSENTIAL_PKGS $OPTIONAL_PKGS"

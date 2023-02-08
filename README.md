@@ -360,7 +360,7 @@ Here is what <code>build.sh</code> does.
 1. Downloads the latest Pi firmware/kernel bundle, and unpacks it 
 into a directory that will become the boot partition of the SD card.
 
-2. Merges into the boot directory the content of the <code>bootfiles/<code>
+2. Merges into the boot directory the content of the <code>bootfiles/</code>
 directory. This is the place to set specific firmware and kernel 
 parameters.
 
@@ -376,29 +376,6 @@ placeholders in some configuration files for values in <code>CONFIG.sh</code>.
 6. Copies <code>CONFIG.sh</code> itself into the generated <code>/etc</code>
 directory, where it will be read at runtime by a number of scripts.
  
-## Repository contents
-
-`contrib-binaries/` -- this directory contains pre-compiled binaries of
-utilities that are not available in the Raspbian repository -- probably
-because I wrote them. For example, this build uses a minimal version of
-`syslogd` that is designed for use with  a temporary logfile in memory.
-(see https://github.com/kevinboone/syslogd-lite for more information).
-This directory is structured as it will appear in the root filesystem.
-
-`rootfs-overlay/` -- files that will overwrite versions that are downloaded
-from repositories. These files contain configuration specific for this
-build. Some files might need to be edited, but it's difficult to
-document every conceivable change. 
-
-`bootfiles/` -- additional files that will be copied to the boot partition of the
-card (e.g., cmdline.txt). The defaults should work, but it's not unusual to
-have to change these files to, for example, enable specific features in
-firmware. These are standard Raspberry Pi files that are well documented.
-
-`misc-config` -- various configuration files that could not be placed
-in `rootfs-overlay` because their target directories are generated
-during the build.
-
 ## Configuration notes
 
 ### Settings file CONFIG.sh
@@ -585,6 +562,9 @@ failure of networking.
 `bootfiles` -- contains files that will be copied to the boot partiion 
 during the build (e.g., `cmdline.txt`). Editing these files is the appropriate
 way to modify the firmware and kernel boot conditions.
+The defaults should work, but it's not unusual to
+have to change these files to, for example, enable specific features in
+firmware. These are standard Raspberry Pi files that are well documented.
 
 `build.sh` -- the main build script. Must be run as an unprivileged user.
 
@@ -607,14 +587,12 @@ own projects.
 
 `get_deb.pl` -- A script to download packages from the Raspbian repository.
 
-`misc-config` -- A few configuration files that didn't seem to fit 
-anywhere else.
+`misc-config` -- A few configuration files that could not be placed in
+`rootfs-overlay` because their target directories are generated during the
+build.
 
 `prepare-card.sh` -- partitions an SD card read for `copy-to-card.sh`.
 
-`rootfs-overlay` -- a directory tree that will be copied onto the root
-filesystem image once all the downloading and unpacking of packages has
-been done.
 
 ## Revisions
 
